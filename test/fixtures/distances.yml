@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  st_lat: 1.5
+  st_lng: 1.5
+  ed_lat: 1.5
+  ed_lng: 1.5
+  distance: 1.5
+
+two:
+  st_lat: 1.5
+  st_lng: 1.5
+  ed_lat: 1.5
+  ed_lng: 1.5
+  distance: 1.5
