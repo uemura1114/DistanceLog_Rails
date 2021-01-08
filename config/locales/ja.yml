@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    attributes:
+      distance:
+        st_lat: Start Lat
+        st_lng: Start Lng
+        ed_lat: End Lat
+        ed_lng: End Lng
+        
