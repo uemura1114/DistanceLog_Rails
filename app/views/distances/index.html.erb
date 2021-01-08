@@ -9,9 +9,15 @@
   <div class="alert alert-primary"><%= flash[:notice] %></div>
 <% end %>
 
-<% @distances.each do |distance| %>
+<% @distances.reverse.each do |distance| %>
   <ul>
-    <li><%= distance.distance %></li>
+    <li><%= distance.distance.floor(1) %></li>
+    <% if distance == @distances.last %>
+      <li><%= 'NEW' %></li>
+    <% end %>
+    <% if distance.created_at.strftime('%Y%m%d') == Date.today.strftime('%Y%m%d') %>
+      <li><%= 'TODAY' %></li>
+    <% end %>
     <li><%= link_to '削除', distance, method: :delete, data: {confirm: '削除してもよろしいですか？'} %></li>
   </ul>
 <% end %>
