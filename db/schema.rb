@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_06_100301) do
+ActiveRecord::Schema.define(version: 2021_01_08_005109) do
 
   create_table "distances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.float "st_lat"
-    t.float "st_lng"
-    t.float "ed_lat"
-    t.float "ed_lng"
+    t.decimal "st_lat", precision: 8, scale: 6
+    t.decimal "st_lng", precision: 9, scale: 6
+    t.decimal "ed_lat", precision: 8, scale: 6
+    t.decimal "ed_lng", precision: 9, scale: 6
     t.float "distance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
