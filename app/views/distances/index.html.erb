@@ -1,3 +1,19 @@
 <h1>飛距離一覧</h1>
 
+
 <%= render partial: 'form', locals: { distance: @distance } %>
+
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+
+<% if flash[:success] %>
+  <div class="alert alert-primary"><%= flash[:success] %></div>
+<% end %>
+
+<% @distances.each do |distance| %>
+  <ul>
+    <li><%= distance.distance %></li>
+    <li><%= link_to '削除', distance, method: :delete, data: {confirm: '削除してもよろしいですか？'} %></li>
+  </ul>
+<% end %>
