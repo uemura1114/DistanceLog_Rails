@@ -1,18 +1,36 @@
 class DistancesController < ApplicationController
   def index
-    @distance = Distance.new
+    if flash[:distance]
+      @distance = Distance.new(flash[:distance])
+    else
+      @distance = Distance.new
+    end
     @distances = Distance.all
   end
 
   def create
-    Distance.create(distance_params_add_distance)
-    redirect_to distances_path, flash: { success: 'データが追加されました'}
+    distance = Distance.create(distance_params_add_distance)
+    if distance.save
+      redirect_to distances_path,
+        flash: {
+          notice: "データ(ID=#{distance.id})が追加されました"
+        }
+    else
+      redirect_to distances_path,
+        flash: {
+          distance: distance,
+          error_messages: distance.errors.full_messages
+        }
+    end
   end
 
   def destroy
     distance = Distance.find(params[:id])
     distance.destroy
-    redirect_to distances_path, flash: { success: 'データが削除されました'}
+    redirect_to distances_path,
+      flash: {
+        notice: "データ(ID=#{distance.id})が削除されました"
+      }
   end
 
   private

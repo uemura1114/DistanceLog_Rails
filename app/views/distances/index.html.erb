@@ -3,12 +3,10 @@
 
 <%= render partial: 'form', locals: { distance: @distance } %>
 
-<% if flash[:alert] %>
-  <div class="alert alert-danger"><%= flash[:alert] %></div>
-<% end %>
+<%= render partial: 'shared/error_messages' %>
 
-<% if flash[:success] %>
-  <div class="alert alert-primary"><%= flash[:success] %></div>
+<% if flash[:notice] %>
+  <div class="alert alert-primary"><%= flash[:notice] %></div>
 <% end %>
 
 <% @distances.each do |distance| %>
