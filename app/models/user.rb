@@ -13,6 +13,8 @@
 #  index_users_on_name  (name) UNIQUE
 #
 class User < ApplicationRecord
+  has_many :distances
+  
   #これでpassword属性とpassword_confirmation属性が追加される。
   has_secure_password
 

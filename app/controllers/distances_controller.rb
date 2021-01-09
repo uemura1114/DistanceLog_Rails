@@ -9,7 +9,7 @@ class DistancesController < ApplicationController
   end
 
   def create
-    distance = Distance.create(distance_params_add_distance)
+    distance = Distance.create(distance_params_add_user_id)
     if distance.save
       redirect_to distances_path,
         flash: {
@@ -41,6 +41,12 @@ class DistancesController < ApplicationController
 
   def distance_params_add_distance
     Distance.calculate_distance(distance_params)
+  end
+
+  def distance_params_add_user_id
+    params = distance_params_add_distance
+    params[:user_id] = @current_user.id
+    params
   end
 
 end
