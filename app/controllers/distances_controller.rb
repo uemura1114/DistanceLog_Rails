@@ -5,7 +5,7 @@ class DistancesController < ApplicationController
     else
       @distance = Distance.new
     end
-    @distances = Distance.all
+    @distances = Distance.where(user_id: @current_user.id)
   end
 
   def create
