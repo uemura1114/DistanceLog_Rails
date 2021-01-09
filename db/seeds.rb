@@ -11,11 +11,11 @@ if Rails.env == 'development'
   # end
 
   (1..50).each do |i|
-    st_lat = (36 + Random.rand).to_s
-    st_lng = (141 + Random.rand).to_s
-    ed_lat = (36 + Random.rand).to_s
-    ed_lng = (141 + Random.rand).to_s
-    user_id = Random.rand(22)
+    st_lat = (36 + Random.rand / 100).to_s
+    st_lng = (141 + Random.rand / 100).to_s
+    ed_lat = (36 + Random.rand / 100).to_s
+    ed_lng = (141 + Random.rand / 100).to_s
+    user_id = Random.rand(User.all.count / 2)
     params = { :st_lat => st_lat, :st_lng => st_lng, :ed_lat => ed_lat, :ed_lng => ed_lng, :user_id => user_id }
     params = Distance.calculate_distance(params)
     Distance.create(params)
