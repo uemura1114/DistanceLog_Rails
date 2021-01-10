@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to distances_path
     else
+      flash.now[:error_messages] = ['ログインに失敗しました']
       render 'home/index'
     end
   end
