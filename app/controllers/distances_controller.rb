@@ -42,7 +42,7 @@ class DistancesController < ApplicationController
   private
 
   def distance_params
-    params.require(:distance).permit(:st_lat, :st_lng, :ed_lat, :ed_lng)
+    params.require(:distance).permit(:st_lat, :st_lng, :ed_lat, :ed_lng, tag_ids: [])
   end
 
   def distance_params_add_distance

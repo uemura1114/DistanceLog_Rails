@@ -16,10 +16,26 @@ if Rails.env == 'development'
     ed_lat = (36 + Random.rand / 100).to_s
     ed_lng = (141 + Random.rand / 100).to_s
     user_id = Random.rand(User.all.count / 2)
-    params = { :st_lat => st_lat, :st_lng => st_lng, :ed_lat => ed_lat, :ed_lng => ed_lng, :user_id => user_id }
+    tag_count = Random.rand(Tag.all.count)
+    tag_ids = Tag.all.sample(tag_count).pluck(:id)
+    params = { :st_lat => st_lat, :st_lng => st_lng, :ed_lat => ed_lat, :ed_lng => ed_lng, :user_id => user_id , :tag_ids => tag_ids}
     params = Distance.calculate_distance(params)
     Distance.create(params)
   end
+
+  # Tag.create([
+  #   { name: '芯'},
+  #   { name: 'ヒール'},
+  #   { name: 'トゥ'},
+  #   { name: 'テンプラ'},
+  #   { name: 'ややテンプラ'},
+  #   { name: 'ややトップ'},
+  #   { name: 'トップ'},
+  #   { name: 'ちょろ'},
+  # ])
+
+  i = Tag.all.count
+
 
 end
 

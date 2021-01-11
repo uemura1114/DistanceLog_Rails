@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_09_000440) do
+ActiveRecord::Schema.define(version: 2021_01_11_034055) do
+
+  create_table "distance_tag_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "distance_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["distance_id"], name: "index_distance_tag_relations_on_distance_id"
+    t.index ["tag_id"], name: "index_distance_tag_relations_on_tag_id"
+  end
 
   create_table "distances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.decimal "st_lat", precision: 8, scale: 6
@@ -24,6 +33,12 @@ ActiveRecord::Schema.define(version: 2021_01_09_000440) do
     t.index ["user_id"], name: "index_distances_on_user_id"
   end
 
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "password_digest", null: false
@@ -32,5 +47,7 @@ ActiveRecord::Schema.define(version: 2021_01_09_000440) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "distance_tag_relations", "distances"
+  add_foreign_key "distance_tag_relations", "tags"
   add_foreign_key "distances", "users"
 end

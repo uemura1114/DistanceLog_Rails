@@ -12,6 +12,13 @@
 <% @distances.each do |distance| %>
   <ul>
     <li><%= distance.distance.floor(1) %></li>
+    <% if distance.tags[0] %>
+      <li>
+        <% distance.tags.each do |tag| %>
+          <span class="badge badge-success"><%= tag.name %></span>
+        <% end %>
+      </li>
+    <% end %>
     <% if distance == @new_distance %>
       <li><%= 'NEW' %></li>
     <% end %>

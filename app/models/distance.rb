@@ -22,6 +22,8 @@
 #
 class Distance < ApplicationRecord
   belongs_to :user
+  has_many :distance_tag_relations, dependent: :delete_all
+  has_many :tags, through: :distance_tag_relations
 
   validates :st_lat,
   :numericality => {

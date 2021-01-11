@@ -7,5 +7,18 @@
   <%= f.number_field :ed_lat, step: 0.000001, class: 'form-control' %>
   <%= f.label :ed_lng, 'End Lng' %>
   <%= f.number_field :ed_lng, step: 0.000001, class: 'form-control' %>
-  <%= f.submit '登録' %>
+
+    <div class="form-group">
+    <span>タグ</span>
+    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+      <div class="form-check">
+        <%= tag.label class: 'form-check-label' do %>
+          <%= tag.check_box class: 'form-check-input' %>
+          <%= tag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= f.submit '登録', class: 'btn btn-success' %>
 <% end %>
