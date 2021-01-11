@@ -6,7 +6,7 @@
 <%= render partial: 'shared/error_messages' %>
 
 <% if flash[:notice] %>
-  <div class="alert alert-primary"><%= flash[:notice] %></div>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
 <% end %>
 
 <% @distances.each do |distance| %>
