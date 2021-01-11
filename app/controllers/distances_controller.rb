@@ -6,7 +6,8 @@ class DistancesController < ApplicationController
       @distance = Distance.new
     end
     if @current_user
-      @distances = Distance.where(user_id: @current_user.id).page(params[:page])
+      @distances = Distance.where(user_id: @current_user.id).order(:id).reverse_order.page(params[:page])
+      @new_distance = Distance.where(user_id: @current_user.id).last
     else
       redirect_to root_path
     end
