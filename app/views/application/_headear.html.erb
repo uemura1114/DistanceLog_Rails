@@ -1,14 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/distances">DistanceLog</a>
+  <a class="navbar-brand" href="/distances/new">DistanceLog</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <!-- <li class="nav-item">
-        <%= header_link_item('ホーム', root_path) %>
-      </li> -->
+      <li class="nav-item">
+        <%= header_link_item('測定', new_distance_path) %>
+      </li>
       <li class="nav-item">
         <%= header_link_item('ホーム', distances_path) %>
       </li>

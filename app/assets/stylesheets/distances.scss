@@ -1,0 +1,175 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+h1 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+
+a {
+  color: #28a745;
+}
+
+.page-link {
+  color: #28a745;
+}
+
+.page-item.active .page-link {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.container {
+  height: 85vh;
+  position: relative;
+  // box-sizing: content-box;
+}
+
+.form-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  // display: flex;
+  // justify-content: center;
+  width: 100%;
+  // max-width: 500px;
+  .form-second-container {
+    padding: 15px;
+  }
+}
+
+.form-control {
+  width: 100%;
+  max-width: 500px;
+  font-size: 1rem;
+  margin-left: 0.25rem;
+  padding: 0.5rem;
+}
+
+.btn-user {
+  width: 100%;
+}
+
+.point-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+  max-width: 500px;
+  .form-control {
+    display: none;
+  }
+  label{
+    display: none;
+  }
+  // .point-label{
+  //   width: 49％;
+  //   margin: 0;
+  //   text-align: right;
+  //   font-size: 0.9rem;
+  //   padding: 0.2rem 0.3rem;
+  // }
+
+  .point-set-btn {
+    width: 49.7%;
+    // min-width: 120px;
+    // max-width: 160px;
+    // padding: 0.2rem 0.3rem;
+    font-size: 0.85rem;
+  }
+}
+
+.impact-feelings-container {
+  margin: 0.3rem 0 0.4rem;
+  border: #28a745 solid 1px;
+  padding: 0.3rem 0.3rem 0;
+  display: flex;
+  align-items: center;
+  background-color: #D4EDDA;
+  max-width: 500px;
+  .feeling-title {
+    // border: springgreen solid 1px;
+    background-color: #28a745;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    min-width: 50px;
+    padding: 0.2rem 0.1rem;
+    span {
+      color: white;
+    }
+  }
+  .impact-feelings {
+    // border: blue solid 1px;
+    // flex-shrink: 2;
+    display: flex;
+    flex-wrap: wrap;
+    // border: #28a745 solid 1px;
+    .form-check {
+      margin-right: 0.6rem;
+      margin-bottom: 0.2rem;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      .form-check-label {
+        font-size: 0.8rem;
+        padding-left: 1rem;
+        color: #144724;
+        font-weight: bold;
+        // padding: 0;
+        // margin: 0;
+        // padding-bottom: 0.5rem;
+        // margin-bottom: 0.2rem;
+      }
+      .form-check-input {
+        // margin-left: -1rem;
+        // margin-top: 1rem;
+        margin: 0;
+      }
+    }
+  }
+}
+
+#maps {
+  width: 100%;
+  max-width: 500px;
+  height: 250px;
+  border: solid #28a745 1px;
+  margin: 0.5rem 0 0.5rem;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: darkgray;
+  p {
+    color: white;
+  }
+}
+
+.distance-submit-btn {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  max-width: 500px;
+}
+
+.alert-container {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 180px;
+  // box-sizing: border-box;
+  // padding: 0;
+  .alert-second-container {
+    padding: 15px;
+    .alert {
+      max-width: 500px;
+    }
+  }
+}
+
+.alert {
+  ul {
+    margin: 0;
+  }
+ }

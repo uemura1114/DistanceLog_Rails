@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     user = User.find_by(name: params[:session][:name])
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to distances_path
+      redirect_to new_distance_path
     else
       flash.now[:error_messages] = ['ログインに失敗しました']
       render 'home/index'
