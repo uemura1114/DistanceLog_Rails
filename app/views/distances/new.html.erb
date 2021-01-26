@@ -1,22 +1,24 @@
-<div id="maps">
- <p>位置情報を取得するとMAPを表示します</p>
-</div>
-
-
-<div class="alert-container">
-  <div class="alert-second-container">
-    <%= render partial: 'shared/error_messages' %>
-    <% if flash[:notice] %>
-      <div class="alert alert-success alert-dismissible fade show">
-        <%= flash[:notice] %>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    <% end %>
+<div class="new-container">
+  <div id="maps">
+   <p>位置情報を取得するとMAPを表示します</p>
   </div>
+  
+  
+  <div class="alert-container">
+    <div class="alert-second-container">
+      <%= render partial: 'shared/error_messages' %>
+      <% if flash[:notice] %>
+        <div class="alert alert-success alert-dismissible fade show">
+          <%= flash[:notice] %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <%= render partial: 'form', locals: { distance: @distance } %>
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfwWbq13MgNnUpYizs_UWIlfRuhd6T3jE&callback=initMap" async></script>
 </div>
-
-<%= render partial: 'form', locals: { distance: @distance } %>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfwWbq13MgNnUpYizs_UWIlfRuhd6T3jE&callback=initMap" async></script>

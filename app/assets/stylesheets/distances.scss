@@ -21,9 +21,12 @@ a {
 }
 
 .container {
-  height: 85vh;
   position: relative;
   // box-sizing: content-box;
+}
+
+.new-container {
+  height: 80vh;
 }
 
 .form-container {
@@ -39,16 +42,25 @@ a {
   }
 }
 
-.form-control {
-  width: 100%;
-  max-width: 500px;
-  font-size: 1rem;
-  margin-left: 0.25rem;
-  padding: 0.5rem;
+.form-group {
+  margin-bottom: 12px;
+  .form-control {
+    width: 100%;
+    max-width: 200px;
+    font-size: 1rem;
+    margin-left: 0.25rem;
+    padding: 0.2rem;
+  }
+  label {
+    margin-bottom: 0;
+  }
 }
 
 .btn-user {
   width: 100%;
+  max-width: 200px;
+  margin-top: 12px;
+  margin-bottom: 30px;
 }
 
 .point-container {
@@ -173,3 +185,57 @@ a {
     margin: 0;
   }
  }
+
+ .badge {
+   font-size: 0.5rem;
+ }
+
+.distance-data-table {
+  border-bottom: solid 1px gray;
+  border-left: solid 2px gray;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 500px;
+  td {
+    padding: 0;
+    padding-left: 4px;
+    vertical-align: middle;
+    border: none;
+    .distance-container {
+      vertical-align: middle;
+      width: 70px;
+    }
+    .badge-container {
+
+    }
+    .updated_at {
+      font-size: 0.7rem;
+      color: gray;
+    }
+  }
+}
+
+.btn-sm {
+  font-size: 0.6rem;
+  padding: 2px 4px;
+  margin-bottom: 2px;
+}
+
+.pagination-container {
+  li {
+    font-size: 0.8rem;
+    a {
+      padding: 6px 6px;
+    }
+  }
+
+}
+
+.footer {
+  border-top: #bbbbbb 1px solid;
+  color: #bbbbbb;
+  text-align: right;
+  margin: 0 4px;
+  padding: 0 5px;
+  font-size: 0.8rem;
+}
