@@ -12,5 +12,10 @@
  *
  */
 
+ $theme-colors: (
+  success: #202836,
+  dark: #202836
+);
+
  @import "bootstrap";
  @import "distances";

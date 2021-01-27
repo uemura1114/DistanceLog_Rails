@@ -2,22 +2,61 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+  background-color: #EDEDE7;
+}
+
 h1 {
   margin-top: 1rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  border: black solid 1px;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  background-color: #DBDDDA;
+  color: #202836;
+  font-weight: bold;
+  margin-bottom: 16px;
 }
 
 a {
-  color: #28a745;
+  color: #202836;
+  text-decoration: underline;
 }
 
+.navbar-brand {
+  text-decoration: none;
+}
+
+
 .page-link {
-  color: #28a745;
+  color: #202836;
+  background-color: #DBDDDA;
+  border: gray 1px solid;
+}
+
+.page-link:hover {
+  opacity: 0.8;
+  color: #202836;
+  background-color: #DBDDDA;
+  border: gray 1px solid;
+}
+
+.page-item.disabled .page-link {
+  background-color: #DBDDDA;
+  border: gray 1px solid;
 }
 
 .page-item.active .page-link {
-  background-color: #28a745;
-  border-color: #28a745;
+  background-color: #202836;
+  border-color: #202836;
+}
+
+.page-item.active .page-link:hover {
+  background-color: #202836;
+  border-color: #202836;
+  opacity: 0.8;
+  color: #ffffff;
 }
 
 .container {
@@ -93,15 +132,15 @@ a {
 
 .impact-feelings-container {
   margin: 0.3rem 0 0.4rem;
-  border: #28a745 solid 1px;
+  border: #202836 solid 1px;
   padding: 0.3rem 0.3rem 0;
   display: flex;
   align-items: center;
-  background-color: #D4EDDA;
+  background-color: #DBDDDA;
   max-width: 500px;
   .feeling-title {
     // border: springgreen solid 1px;
-    background-color: #28a745;
+    background-color: #202836;
     border-radius: 3px;
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
@@ -127,7 +166,7 @@ a {
       .form-check-label {
         font-size: 0.8rem;
         padding-left: 1rem;
-        color: #144724;
+        color: #202836;
         font-weight: bold;
         // padding: 0;
         // margin: 0;
@@ -147,7 +186,7 @@ a {
   width: 100%;
   max-width: 500px;
   height: 250px;
-  border: solid #28a745 1px;
+  border: solid #202836 1px;
   margin: 0.5rem 0 0.5rem;
   font-size: 0.8rem;
   display: flex;
@@ -219,9 +258,11 @@ a {
   font-size: 0.6rem;
   padding: 2px 4px;
   margin-bottom: 2px;
+  text-decoration: none;
 }
 
 .pagination-container {
+  margin-top: 20px;
   li {
     font-size: 0.8rem;
     a {
