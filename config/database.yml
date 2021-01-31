@@ -14,7 +14,7 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: password
+  password: <%= ENV['ROOTPASS'] %>
   host: db
 
 development:
@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: distance_log_production
-  username: distance_log
-  password: <%= ENV['DISTANCE_LOG_DATABASE_PASSWORD'] %>
+  # username: distance_log
+  # password: <%= ENV['DISTANCE_LOG_DATABASE_PASSWORD'] %>

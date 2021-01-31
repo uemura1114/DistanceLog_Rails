@@ -1,0 +1,40 @@
+<h1>飛距離データ一覧</h1>
+
+<% @distances.each do |distance| %>
+  <table class="distance-data-table">
+    <tr>
+      <td width="70px">
+        <div class="distance-container">
+          <span>
+            <a href="#"><%= distance.distance.floor(1) %> yd</a>
+          </span>
+        </div>
+      </td>
+      <td colspan="2">
+        <div class="badge-container">
+          <% if distance == @new_distance %>
+            <span class="badge badge-danger">NEW</span>
+          <% end %>
+          <% if distance.created_at.strftime('%Y%m%d') == Date.today.strftime('%Y%m%d') %>
+            <span class="badge badge-primary">TODAY</span>
+          <% end %>
+          <% distance.tags.each do |tag| %>
+            <span class="badge badge-success"><%= tag.name %></span>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <span class="updated_at"><%= distance.updated_at.to_s(:datetime_jp) %></span>
+      </td>
+      <td width="10px">
+        <span><%= link_to '削除', distance, method: :delete, data: {confirm: '削除してもよろしいですか？'}, class: 'btn btn-success btn-sm' %></span>
+      </td>
+    </tr>
+  </table>
+<% end %>
+
+<div class="pagination-container">
+  <%= paginate @distances %>
+</div>
