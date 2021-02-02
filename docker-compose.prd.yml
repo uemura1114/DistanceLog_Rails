@@ -22,14 +22,3 @@ services:
     stdin_open: true
     environment:
       RAILS_ENV: production
-      
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: ${ROOTPASS}
-    ports:
-      - "3306:3306"
-    volumes:
-      - db-volume:/var/lib/mysql
-volumes:
-  db-volume:
