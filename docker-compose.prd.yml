@@ -16,8 +16,6 @@ services:
     command: bundle exec rails s -b '0.0.0.0'
     volumes:
       - .:/distance_log
-    depends_on:
-      - db
     tty: true
     stdin_open: true
     environment:
