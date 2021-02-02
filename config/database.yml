@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
-  database: distance_log_production
-  # username: distance_log
-  # password: <%= ENV['DISTANCE_LOG_DATABASE_PASSWORD'] %>
+  host: <%= Rails.application.credentials.rds[:host] %>
+  database: <%= Rails.application.credentials.rds[:database] %>
+  username: <%= Rails.application.credentials.rds[:username] %>
+  password: <%= Rails.application.credentials.rds[:password] %>
