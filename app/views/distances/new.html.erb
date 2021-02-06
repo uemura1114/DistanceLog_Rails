@@ -20,5 +20,11 @@
   
   <%= render partial: 'form', locals: { distance: @distance } %>
   
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps_api_key %>&callback=initMap" async></script>
+  <% if Rails.env == 'production' %>
+    <script src="https://maps.googleapis.com/maps/api/js?key= <%= Rails.application.credentials.google_maps_api_key %>" async></script>
+  <% end %>
+  <% if Rails.env == 'development' %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps_api_key_dev %>" async></script>
+  <% end %>
+
 </div>
