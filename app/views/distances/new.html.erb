@@ -1,6 +1,6 @@
 <div class="new-container">
   <div id="maps">
-   <p>位置情報を取得するとMAPを表示します</p>
+     <p>位置情報取得までしばらくお待ちください</p>
   </div>
   
   
@@ -20,11 +20,16 @@
   
   <%= render partial: 'form', locals: { distance: @distance } %>
   
-  <% if Rails.env == 'production' %>
-    <script src="https://maps.googleapis.com/maps/api/js?key= <%= Rails.application.credentials.google_maps_api_key %>" async></script>
-  <% end %>
-  <% if Rails.env == 'development' %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps_api_key_dev %>" async></script>
-  <% end %>
-
 </div>
+
+<script>
+  document.addEventListener('touchstart', function() {}, {passive: true});
+  document.addEventListener('touchmove', function() {}, {passive: true});
+</script>
+
+<% if Rails.env == 'production' %>
+  <script src="https://maps.googleapis.com/maps/api/js?key= <%= Rails.application.credentials.google_maps_api_key %>&callback=initMap" async></script>
+<% end %>
+<% if Rails.env == 'development' %>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_maps_api_key_dev %>&callback=initMap" async></script>
+<% end %>

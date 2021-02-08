@@ -43,6 +43,11 @@ class DistancesController < ApplicationController
     end
   end
 
+  def show
+    @distance = Distance.find(params[:id])
+    @new_distance = Distance.where(user_id: @current_user.id).last
+  end
+
   def destroy
     distance = Distance.find(params[:id])
     distance.destroy
