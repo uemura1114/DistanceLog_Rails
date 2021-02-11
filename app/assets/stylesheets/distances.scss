@@ -95,11 +95,19 @@ a {
   }
 }
 
+.hidden-form {
+  display: none;
+}
+
 .btn-user {
   width: 100%;
   max-width: 200px;
   margin-top: 12px;
   margin-bottom: 30px;
+}
+
+.test-user-btn {
+  margin-top: 0;
 }
 
 .point-container {
