@@ -1,2 +1,16 @@
 <h1>マイページ</h1>
-<%= @current_user.name %>
+<table class="table table-sm table-striped">
+  <tr>
+    <th>ユーザー名</th>
+    <td><%= @current_user.name %></td>
+  </tr>
+  <tr>
+    <th>パスワード</th>
+    <td>●●●●</td>
+  </tr>
+  <tr>
+    <th>データ数</th>
+    <td><%= @distances.size %></td>
+  </tr>
+</table>
+
