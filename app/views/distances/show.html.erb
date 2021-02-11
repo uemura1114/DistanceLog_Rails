@@ -14,9 +14,6 @@
           <% if @distance == @new_distance %>
             <span class="badge badge-danger">NEW</span>
           <% end %>
-          <% if @distance.created_at.strftime('%Y%m%d') == Date.today.strftime('%Y%m%d') %>
-            <span class="badge badge-primary">TODAY</span>
-          <% end %>
           <% @distance.tags.each do |tag| %>
             <span class="badge badge-success"><%= tag.name %></span>
           <% end %>
