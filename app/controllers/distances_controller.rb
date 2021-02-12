@@ -35,7 +35,7 @@ class DistancesController < ApplicationController
       redirect_to new_distance_path,
       flash: {
         distance: distance,
-        error_messages:  ["START地点かEND地点の2地点がそろっていません"]
+        error_messages:  ["START地点とEND地点の2地点がそろっていません"]
       }
       # flash[:error_messages] =  ["START地点かEND地点のどちらかがセットされていません"]
       # flash[:distance] = distance

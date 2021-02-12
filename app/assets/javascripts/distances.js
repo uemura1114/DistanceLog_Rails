@@ -10,10 +10,10 @@ var map;
 var current_maker;
 var start_maker;
 var end_maker;
-var api_read;
+var tgt_marker;
 var watch_id;
 var lastUpdateTime;
-var minFrequency = 2 * 1000;
+var minFrequency = 0.5 * 1000;
 
 var st_img_url = "https://chart.googleapis.com/chart?chst=d_map_pin_letter_withshadow&chld=S|ff0000|ffff00";
 var ed_img_url = "https://chart.googleapis.com/chart?chst=d_map_pin_letter_withshadow&chld=E|39A751|ffff00";
@@ -37,14 +37,24 @@ function initMap(){
 }
 
 function ButtonClickSt(callback) {
-  slat.value = current_lat;
-  slng.value = current_lng;
+  if (current_maker.map) {
+    slat.value = current_lat;
+    slng.value = current_lng;
+  }else if (tgt_marker.map) {
+    slat.value = Math.floor(tgt_marker.getPosition().lat() * 1000000) / 1000000;
+    slng.value = Math.floor(tgt_marker.getPosition().lng() * 1000000) / 1000000;
+  }
   callback();
 }
     
 function ButtonClickEd(callback){
-  elat.value = current_lat;
-  elng.value = current_lng;
+  if (current_maker.map) {
+    elat.value = current_lat;
+    elng.value = current_lng;
+  }else if (tgt_marker.map) {
+    elat.value = Math.floor(tgt_marker.getPosition().lat() * 1000000) / 1000000;
+    elng.value = Math.floor(tgt_marker.getPosition().lng() * 1000000) / 1000000;
+  }
   callback();
 }
 
@@ -88,7 +98,7 @@ function openMaps() {
       streetViewControl: false,
       scaleControl: true,
       fullscreenControl: false,
-      gestureHandling: 'cooperative',
+      // gestureHandling: 'cooperative',
       mapTypeControlOptions:{
       mapTypeIds:[google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.ROADMAP], 
     },
@@ -188,6 +198,62 @@ function success(position) {
   };
   current_maker.setMap(null);
   current_maker = new google.maps.Marker(markerOptions);
+}
+
+function gpsOnOff() {
+  if (current_maker.map){
+    navigator.geolocation.clearWatch(watch_id);
+    current_maker.setMap(null);
+  
+    tgt_marker = new google.maps.Marker({
+      position: {lat: center_lat, lng: center_lng},
+      map: map,
+      icon: {
+        path: 'M -8,0 8,0 M 0,-8 0,8',
+        strokeColor: "#CE0001",
+        strokeWeight: 3.0,
+      },
+      clickable: false,
+      zIndex: 10
+    });
+
+    tgt_marker.setMap(map);
+  
+    google.maps.event.addListener( map ,'bounds_changed',function(){
+      var pos = map.getCenter();
+      tgt_marker.setPosition(pos);
+
+    });
+  }else if (tgt_marker.map) {
+    google.maps.event.clearListeners(map, 'bounds_changed');
+    tgt_marker.setMap(null);
+    watch_id = navigator.geolocation.watchPosition(success);
+    current_maker.setMap(map);
+  }
+}
+
+function confirmPoints() {
+  if (end_maker && start_maker) {
+    center_lat = (start_maker.getPosition().lat() + end_maker.getPosition().lat()) / 2;
+    center_lng = (start_maker.getPosition().lng() + end_maker.getPosition().lng()) / 2;
+    map_center_lat = current_lat;
+    map_center_lng = current_lng;
+    map.panTo(new google.maps.LatLng(map_center_lat, map_center_lng));
+
+    var north = Math.max(start_maker.getPosition().lat(), end_maker.getPosition().lat());
+    var south = Math.min(start_maker.getPosition().lat(), end_maker.getPosition().lat());
+    var east = Math.max(start_maker.getPosition().lng(), end_maker.getPosition().lng());
+    var west = Math.min(start_maker.getPosition().lng(), end_maker.getPosition().lng());
+    latLngBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(south, west),
+      new google.maps.LatLng(north, east)
+      );
+    map.fitBounds(latLngBounds, 17);
+  }
+}
+  
+function confirmMessage() {
+  return confirm('yorosiika');
 }
 
 function showMap(){

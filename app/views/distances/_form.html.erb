@@ -1,6 +1,8 @@
 <div class="form-container">
   <div class="form-second-container">
-    <%= form_with model: @distance, local: true do |f| %>
+    <input type="button" class="btn btn-success gps-on-off-btn" value="GPSの使用 ON/OFF" id="gps-on-off-switch" onclick="gpsOnOff();">
+
+    <%= form_with model: @distance, :html => { :onsubmit => "confirmPoints();" }, local: true do |f| %>
     
     <div class="point-container">
       <!-- <p class=point-label>START</p> -->
@@ -31,8 +33,8 @@
         <% end %>
       </div>
     </div>
-    
-    <%= f.submit '登録', class: 'btn btn-success distance-submit-btn shadow-lg' %>
+    <input type="button" class="btn btn-success distance-submit-btn shadow-lg" value="2地点の確認" onclick="confirmPoints();">
+    <%= f.button '登録', onclick: 'return confirm("登録してよろしいですか？")', class: 'btn btn-success distance-submit-btn shadow-lg' %>
       
     <% end %>
   </div>
