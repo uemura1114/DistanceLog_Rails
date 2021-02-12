@@ -61,23 +61,24 @@ a {
 
 .container {
   position: relative;
-  // box-sizing: content-box;
 }
 
 .new-container {
-  height: 80vh;
+  height: 87vh;
 }
 
 .form-container {
   position: absolute;
   bottom: 0;
   left: 0;
-  // display: flex;
-  // justify-content: center;
   width: 100%;
-  // max-width: 500px;
   .form-second-container {
     padding: 15px;
+    .gps-on-off-btn {
+      padding: 0.2rem 0.3rem;
+      font-size: 0.85rem;
+      width: 49%;
+    }
   }
 }
 
@@ -121,19 +122,9 @@ a {
   label{
     display: none;
   }
-  // .point-label{
-  //   width: 49％;
-  //   margin: 0;
-  //   text-align: right;
-  //   font-size: 0.9rem;
-  //   padding: 0.2rem 0.3rem;
-  // }
-
   .point-set-btn {
     width: 49.7%;
-    // min-width: 120px;
-    // max-width: 160px;
-    // padding: 0.2rem 0.3rem;
+    padding: 0.2rem 0.3rem;
     font-size: 0.85rem;
   }
 }
@@ -147,7 +138,6 @@ a {
   background-color: #DBDDDA;
   max-width: 500px;
   .feeling-title {
-    // border: springgreen solid 1px;
     background-color: #202836;
     border-radius: 3px;
     margin-right: 0.5rem;
@@ -160,11 +150,8 @@ a {
     }
   }
   .impact-feelings {
-    // border: blue solid 1px;
-    // flex-shrink: 2;
     display: flex;
     flex-wrap: wrap;
-    // border: #28a745 solid 1px;
     .form-check {
       margin-right: 0.6rem;
       margin-bottom: 0.2rem;
@@ -176,14 +163,9 @@ a {
         padding-left: 1rem;
         color: #202836;
         font-weight: bold;
-        // padding: 0;
-        // margin: 0;
-        // padding-bottom: 0.5rem;
-        // margin-bottom: 0.2rem;
+        font-size: 0.7rem;
       }
       .form-check-input {
-        // margin-left: -1rem;
-        // margin-top: 1rem;
         margin: 0;
       }
     }
@@ -210,15 +192,14 @@ a {
   width: 100%;
   margin-bottom: 0.5rem;
   max-width: 500px;
+  padding: 0;
 }
 
 .alert-container {
   width: 100%;
   position: absolute;
   left: 0;
-  bottom: 180px;
-  // box-sizing: border-box;
-  // padding: 0;
+  bottom: 210px;
   .alert-second-container {
     padding: 15px;
     .alert {
@@ -228,8 +209,11 @@ a {
 }
 
 .alert {
+  z-index: 10;
   ul {
     margin: 0;
+    list-style: none;
+    padding: 0;
   }
  }
 
