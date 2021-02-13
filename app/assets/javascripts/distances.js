@@ -37,23 +37,23 @@ function initMap(){
 }
 
 function ButtonClickSt(callback) {
-  if (current_maker.map) {
-    slat.value = current_lat;
-    slng.value = current_lng;
-  }else if (tgt_marker.map) {
+  if (tgt_marker) {
     slat.value = Math.floor(tgt_marker.getPosition().lat() * 1000000) / 1000000;
     slng.value = Math.floor(tgt_marker.getPosition().lng() * 1000000) / 1000000;
+  }else {
+    slat.value = current_lat;
+    slng.value = current_lng;
   }
   callback();
 }
     
 function ButtonClickEd(callback){
-  if (current_maker.map) {
-    elat.value = current_lat;
-    elng.value = current_lng;
-  }else if (tgt_marker.map) {
+  if (tgt_marker) {
     elat.value = Math.floor(tgt_marker.getPosition().lat() * 1000000) / 1000000;
     elng.value = Math.floor(tgt_marker.getPosition().lng() * 1000000) / 1000000;
+  }else {
+    elat.value = current_lat;
+    elng.value = current_lng;
   }
   callback();
 }
@@ -98,7 +98,8 @@ function openMaps() {
       streetViewControl: false,
       scaleControl: true,
       fullscreenControl: false,
-      // gestureHandling: 'cooperative',
+      gestureHandling: 'greedy',
+      rotateControl: false,
       mapTypeControlOptions:{
       mapTypeIds:[google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.ROADMAP], 
     },
@@ -166,7 +167,7 @@ function success(position) {
   current_lat = Math.floor(current_lat * 1000000) / 1000000;
   current_lng = Math.floor(current_lng * 1000000) / 1000000;
 
-  if (start_maker) {
+  if (start_maker && !tgt_marker) {
     var north = Math.max(current_lat, start_maker.getPosition().lat());
     var south = Math.min(current_lat, start_maker.getPosition().lat());
     var east = Math.max(current_lng, start_maker.getPosition().lng());
@@ -176,7 +177,7 @@ function success(position) {
       new google.maps.LatLng(north, east)
       );
     map.fitBounds(latLngBounds, 17);
-  }else if (maps) {
+  }else if (maps && !tgt_marker) {
     map_center_lat = current_lat;
     map_center_lng = current_lng;
     map.panTo(new google.maps.LatLng(map_center_lat, map_center_lng));
@@ -201,10 +202,17 @@ function success(position) {
 }
 
 function gpsOnOff() {
-  if (current_maker.map){
-    navigator.geolocation.clearWatch(watch_id);
-    current_maker.setMap(null);
-  
+  if (tgt_marker){
+    google.maps.event.clearListeners(map, 'bounds_changed');
+    if(tgt_marker.map){
+      tgt_marker.setMap(null);
+    }
+    tgt_marker = null;
+    current_maker.setMap(map);
+  }else {
+    center_lat = map.getCenter().lat();
+    center_lng = map.getCenter().lng();
+    
     tgt_marker = new google.maps.Marker({
       position: {lat: center_lat, lng: center_lng},
       map: map,
@@ -216,19 +224,12 @@ function gpsOnOff() {
       clickable: false,
       zIndex: 10
     });
-
+    
     tgt_marker.setMap(map);
-  
     google.maps.event.addListener( map ,'bounds_changed',function(){
       var pos = map.getCenter();
       tgt_marker.setPosition(pos);
-
     });
-  }else if (tgt_marker.map) {
-    google.maps.event.clearListeners(map, 'bounds_changed');
-    tgt_marker.setMap(null);
-    watch_id = navigator.geolocation.watchPosition(success);
-    current_maker.setMap(map);
   }
 }
 
