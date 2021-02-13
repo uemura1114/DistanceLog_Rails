@@ -253,8 +253,24 @@ function confirmPoints() {
   }
 }
   
-function confirmMessage() {
-  return confirm('yorosiika');
+function clearPoints() {
+  if (start_maker && !end_maker) {
+    confirm("START地点を削除しますか？");
+    start_maker.setMap(null);
+    start_maker = null;
+  }
+  if(end_maker && !start_maker) {
+    confirm("END地点を削除しますか？");
+    end_maker.setMap(null);
+    end_maker = null;
+  }
+  if (start_maker && end_maker) {
+    confirm("START地点とEND地点を削除しますか？");
+    start_maker.setMap(null);
+    end_maker.setMap(null);
+    start_maker = null;
+    end_maker = null;
+  }
 }
 
 function showMap(){

@@ -88,24 +88,25 @@ a {
   .form-second-container {
     padding: 15px;
     max-width: 500px;
-    .gps-on-off-btn {
-      padding: 0;
-      font-size: 0.80rem;
-      width: 100%;
-      max-width: 500px;
-    }
     .distance-submit-container {
       display: flex;
       justify-content: space-between;
       max-width: 500px;
-      .distance-submit-btn {
-        width: 49.7%;
+      .option-btn {
+        width: 33%;
         margin-bottom: 0.5rem;
-        padding: 0;
+        padding: 0.1rem 0;
         font-size: 0.8rem;
       }
     }
   }
+}
+
+.distance-submit-btn {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0;
+  font-size: 0.8rem;
 }
 
 .form-group {
@@ -150,7 +151,7 @@ a {
   }
   .point-set-btn {
     width: 49.7%;
-    padding: 0;
+    padding: 0.3rem 0;
     font-size: 0.80rem;
   }
 }
