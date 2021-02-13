@@ -73,25 +73,32 @@ a {
 }
 
 .container {
-  position: relative;
+  // position: relative;
 }
 
 .new-container {
-  height: 82vh;
+  // height: 82vh;
 }
 
 .form-container {
-  position: absolute;
-  bottom: 0;
+  position: fixed;
+  z-index: 10;
+  bottom: 8vh;
   left: 0;
+  // max-width: 500px;
   width: 100%;
+  // padding: 0 15px;
+  margin: 0 auto;
   .form-second-container {
     padding: 15px;
-    max-width: 500px;
+    max-width: 470px;
+    border: 1px solid black;
+    background-color: #eeeeee;
+    margin: 0 auto;
     .distance-submit-container {
       display: flex;
       justify-content: space-between;
-      max-width: 500px;
+      max-width: 470px;
       .option-btn {
         width: 33%;
         margin-bottom: 0.5rem;
@@ -104,6 +111,7 @@ a {
 
 .distance-submit-btn {
   width: 100%;
+  max-width: 470px;
   margin-bottom: 0.5rem;
   padding: 0.3rem 0;
   font-size: 0.8rem;
@@ -141,8 +149,9 @@ a {
 .point-container {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.3rem;
-  max-width: 500px;
+  // margin-top: 0.3rem;
+  margin-bottom: 0.5rem;
+  max-width: 470px;
   .form-control {
     display: none;
   }
@@ -209,6 +218,7 @@ a {
   justify-content: center;
   align-items: center;
   background-color: darkgray;
+  margin: 0.7rem auto 0;
   p {
     color: white;
   }
@@ -220,7 +230,8 @@ a {
   width: 100%;
   position: absolute;
   left: 0;
-  bottom: 210px;
+  top: 200px;
+  opacity: 0.8;
   .alert-second-container {
     padding: 15px;
     .alert {
@@ -289,7 +300,10 @@ a {
   border-top: #bbbbbb 1px solid;
   color: #bbbbbb;
   text-align: right;
-  margin: 0 4px;
-  padding: 0 5px;
+  margin: 0 auto;
+  padding: 3px 10px;
   font-size: 0.8rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
