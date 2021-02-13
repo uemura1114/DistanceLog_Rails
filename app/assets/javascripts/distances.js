@@ -250,6 +250,8 @@ function confirmPoints() {
       new google.maps.LatLng(north, east)
       );
     map.fitBounds(latLngBounds, 17);
+  }else {
+    alert("2地点がそろっていません。");
   }
 }
   
