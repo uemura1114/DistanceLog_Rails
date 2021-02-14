@@ -208,15 +208,13 @@ function gpsOnOff() {
       tgt_marker.setMap(null);
     }
     tgt_marker = null;
-    map_center_lat = current_lat;
-    map_center_lng = current_lng;
-    map.panTo(new google.maps.LatLng(map_center_lat, map_center_lng));
+    map.panTo(new google.maps.LatLng(current_lat, current_lng));
   }else {
     center_lat = map.getCenter().lat();
     center_lng = map.getCenter().lng();
     
     tgt_marker = new google.maps.Marker({
-      position: {lat: center_lat, lng: center_lng},
+      position: {lat: current_lat, lng: current_lng},
       map: map,
       icon: {
         path: 'M -8,0 8,0 M 0,-8 0,8',
@@ -228,6 +226,7 @@ function gpsOnOff() {
     });
     
     tgt_marker.setMap(map);
+    map.panTo(new google.maps.LatLng(current_lat, current_lng));
     google.maps.event.addListener( map ,'bounds_changed',function(){
       var pos = map.getCenter();
       tgt_marker.setPosition(pos);
