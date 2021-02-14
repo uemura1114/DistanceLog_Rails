@@ -73,11 +73,11 @@ a {
 }
 
 .container {
-  // position: relative;
+  // margin-bottom: 80px;
 }
 
 .new-container {
-  // height: 82vh;
+  height: 90vh;
 }
 
 .form-container {
@@ -303,7 +303,5 @@ a {
   margin: 0 auto;
   padding: 3px 10px;
   font-size: 0.8rem;
-  position: fixed;
-  bottom: 0;
   width: 100%;
 }
