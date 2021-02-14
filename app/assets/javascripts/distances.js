@@ -208,7 +208,9 @@ function gpsOnOff() {
       tgt_marker.setMap(null);
     }
     tgt_marker = null;
-    current_maker.setMap(map);
+    map_center_lat = current_lat;
+    map_center_lng = current_lng;
+    map.panTo(new google.maps.LatLng(map_center_lat, map_center_lng));
   }else {
     center_lat = map.getCenter().lat();
     center_lng = map.getCenter().lng();
