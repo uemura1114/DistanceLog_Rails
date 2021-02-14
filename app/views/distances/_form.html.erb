@@ -1,19 +1,18 @@
 <div class="form-container">
   <div class="form-second-container">
-    <input type="button" class="btn btn-success gps-on-off-btn" value="SETする地点の切替（GPS位置/地図中心）" id="gps-on-off-switch" onclick="gpsOnOff();">
 
     <%= form_with model: @distance, :html => { :onsubmit => "confirmPoints();" }, local: true do |f| %>
     
     <div class="point-container">
       <!-- <p class=point-label>START</p> -->
-      <input type="button" class="btn btn-success point-set-btn" value="①START地点をSET" onclick="ButtonClickSt(createStartMaker);">
+      <input type="button" class="btn btn-success point-set-btn" value="① START地点をSET" onclick="ButtonClickSt(createStartMaker);">
       <%= f.label :st_lat, 'Start Lat' %>
       <%= f.number_field :st_lat, step: 0.000001, class: 'form-control' %>
       <%= f.label :st_lng, 'Start Lng' %>
       <%= f.number_field :st_lng, step: 0.000001, class: 'form-control' %>
     
       <!-- <p class=point-label>END</p> -->
-      <input type="button" class="btn btn-success point-set-btn" value="②END地点をSET" onclick="ButtonClickEd(createEndMaker);">
+      <input type="button" class="btn btn-success point-set-btn" value="② END地点をSET" onclick="ButtonClickEd(createEndMaker);">
       <%= f.label :ed_lat, 'End Lat' %>
       <%= f.number_field :ed_lat, step: 0.000001, class: 'form-control' %>
       <%= f.label :ed_lng, 'End Lng' %>
@@ -34,10 +33,11 @@
       </div>
     </div>
     <div class="distance-submit-container">
-      <input type="button" class="btn btn-success distance-submit-btn shadow-lg" value="2地点の確認" onclick="confirmPoints();">
-      <%= f.button '登録', onclick: 'return confirm("登録してよろしいですか？")', class: 'btn btn-success distance-submit-btn shadow-lg' %>
+      <input type="button" class="btn btn-success option-btn" value="GPS↔MAP中心" id="gps-on-off-switch" onclick="gpsOnOff();">
+      <input type="button" class="btn btn-success option-btn" value="2地点確認" onclick="confirmPoints();">
+      <input type="button" class="btn btn-success option-btn" value="地点クリア" onclick="clearPoints();">
     </div>
-      
+      <%= f.button '③ 登録', onclick: 'return confirm("登録してよろしいですか？")', class: 'btn btn-success distance-submit-btn shadow-lg' %>
     <% end %>
   </div>
 </div>

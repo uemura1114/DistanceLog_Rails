@@ -208,13 +208,13 @@ function gpsOnOff() {
       tgt_marker.setMap(null);
     }
     tgt_marker = null;
-    current_maker.setMap(map);
+    map.panTo(new google.maps.LatLng(current_lat, current_lng));
   }else {
     center_lat = map.getCenter().lat();
     center_lng = map.getCenter().lng();
     
     tgt_marker = new google.maps.Marker({
-      position: {lat: center_lat, lng: center_lng},
+      position: {lat: current_lat, lng: current_lng},
       map: map,
       icon: {
         path: 'M -8,0 8,0 M 0,-8 0,8',
@@ -226,6 +226,7 @@ function gpsOnOff() {
     });
     
     tgt_marker.setMap(map);
+    map.panTo(new google.maps.LatLng(current_lat, current_lng));
     google.maps.event.addListener( map ,'bounds_changed',function(){
       var pos = map.getCenter();
       tgt_marker.setPosition(pos);
@@ -250,11 +251,29 @@ function confirmPoints() {
       new google.maps.LatLng(north, east)
       );
     map.fitBounds(latLngBounds, 17);
+  }else {
+    alert("2地点がそろっていません。");
   }
 }
   
-function confirmMessage() {
-  return confirm('yorosiika');
+function clearPoints() {
+  if (start_maker && !end_maker) {
+    confirm("START地点を削除しますか？");
+    start_maker.setMap(null);
+    start_maker = null;
+  }
+  if(end_maker && !start_maker) {
+    confirm("END地点を削除しますか？");
+    end_maker.setMap(null);
+    end_maker = null;
+  }
+  if (start_maker && end_maker) {
+    confirm("START地点とEND地点を削除しますか？");
+    start_maker.setMap(null);
+    end_maker.setMap(null);
+    start_maker = null;
+    end_maker = null;
+  }
 }
 
 function showMap(){
