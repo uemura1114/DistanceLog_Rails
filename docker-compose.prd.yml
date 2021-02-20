@@ -3,7 +3,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile_nginx
+      dockerfile: Dockerfile_nginx_prd
     volumes:
       - ./public:/usr/share/nginx/public
     ports:
