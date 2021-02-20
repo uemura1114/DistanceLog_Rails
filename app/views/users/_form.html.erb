@@ -14,5 +14,7 @@
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
 
-  <%= f.submit '作成', class: 'btn btn-success btn-user' %>
+  <%= f.submit '登録', class: 'btn btn-success btn-user' %>
 <% end %>
+
+<%= link_to 'ログインはこちら', root_path, class: 'btn btn-success btn-user' %>

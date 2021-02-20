@@ -72,10 +72,6 @@ a {
   color: #ffffff;
 }
 
-.container {
-  // margin-bottom: 80px;
-}
-
 .new-container {
   height: 90vh;
 }
@@ -85,9 +81,7 @@ a {
   z-index: 10;
   bottom: 8vh;
   left: 0;
-  // max-width: 500px;
   width: 100%;
-  // padding: 0 15px;
   margin: 0 auto;
   .form-second-container {
     padding: 15px;
@@ -139,7 +133,8 @@ a {
   width: 100%;
   max-width: 200px;
   margin-top: 12px;
-  margin-bottom: 30px;
+  margin-bottom: 8px;
+  text-decoration: none;
 }
 
 .test-user-btn {
@@ -149,7 +144,6 @@ a {
 .point-container {
   display: flex;
   justify-content: space-between;
-  // margin-top: 0.3rem;
   margin-bottom: 0.5rem;
   max-width: 470px;
   .form-control {
@@ -207,12 +201,11 @@ a {
   }
 }
 
-#maps {
+.map {
   width: 100%;
   max-width: 470px;
   height: 50vh;
   border: solid #202836 1px;
-  margin: 0.5rem 0 0.5rem;
   font-size: 0.8rem;
   display: flex;
   justify-content: center;
@@ -222,6 +215,11 @@ a {
   p {
     color: white;
   }
+}
+
+.show-map {
+margin:0.7rem 0 0;
+max-width: 500px;
 }
 
 
@@ -267,7 +265,10 @@ a {
     .distance-container {
       vertical-align: middle;
       width: 90px;
-      a span{
+      a {
+        font-size: 1.2rem;
+      }
+      span {
         font-size: 1.2rem;
       }
     }
@@ -300,7 +301,7 @@ a {
   border-top: #bbbbbb 1px solid;
   color: #bbbbbb;
   text-align: right;
-  margin: 0 auto;
+  margin: 30px auto;
   padding: 3px 10px;
   font-size: 0.8rem;
   width: 100%;
