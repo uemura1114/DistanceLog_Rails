@@ -72,10 +72,6 @@ a {
   color: #ffffff;
 }
 
-.container {
-  // margin-bottom: 80px;
-}
-
 .new-container {
   height: 90vh;
 }
@@ -85,9 +81,7 @@ a {
   z-index: 10;
   bottom: 8vh;
   left: 0;
-  // max-width: 500px;
   width: 100%;
-  // padding: 0 15px;
   margin: 0 auto;
   .form-second-container {
     padding: 15px;
@@ -150,7 +144,6 @@ a {
 .point-container {
   display: flex;
   justify-content: space-between;
-  // margin-top: 0.3rem;
   margin-bottom: 0.5rem;
   max-width: 470px;
   .form-control {
@@ -272,7 +265,10 @@ max-width: 500px;
     .distance-container {
       vertical-align: middle;
       width: 90px;
-      a span{
+      a {
+        font-size: 1.2rem;
+      }
+      span {
         font-size: 1.2rem;
       }
     }
