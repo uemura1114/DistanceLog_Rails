@@ -14,6 +14,8 @@
   <%= f.submit 'ログイン', class: 'btn btn-success btn-user' %>
 <% end %>
 
+<%= link_to 'ユーザー登録はこちら', new_user_path, class: 'btn btn-success btn-user' %>
+
 <%= form_with scope: :session, local: true, url: login_path do |f| %>
   <div class="form--group hidden-form">
     <%= f.label :name, 'ユーザー名' %>
