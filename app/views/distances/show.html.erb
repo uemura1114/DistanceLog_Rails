@@ -25,8 +25,8 @@
         <span class="updated_at"><%= @distance.updated_at.to_s(:datetime_jp) %></span>
       </td>
       <td width="10px">
-        <% if @current_user.name == 'testuser' %>
-          <span><a data-confirm="テストユーザーは削除できません" class="btn btn-success btn-sm" href="#">削除</a></span>
+        <% if @distance.prohibited %>
+          <span><a data-confirm="このデータは削除できません。" class="btn btn-success btn-sm" href="#">削除</a></span>
         <% else %>
           <span><%= link_to '削除', @distance, method: :delete, data: {confirm: '削除してもよろしいですか？'}, class: 'btn btn-success btn-sm' %></span>
         <% end %>

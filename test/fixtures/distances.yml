@@ -6,6 +6,7 @@
 #  distance   :float(24)
 #  ed_lat     :decimal(8, 6)
 #  ed_lng     :decimal(9, 6)
+#  prohibited :boolean          default(FALSE), not null
 #  st_lat     :decimal(8, 6)
 #  st_lng     :decimal(9, 6)
 #  created_at :datetime         not null

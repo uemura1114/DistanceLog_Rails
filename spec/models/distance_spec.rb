@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: distances
+#
+#  id         :bigint           not null, primary key
+#  distance   :float(24)
+#  ed_lat     :decimal(8, 6)
+#  ed_lng     :decimal(9, 6)
+#  prohibited :boolean          default(FALSE), not null
+#  st_lat     :decimal(8, 6)
+#  st_lng     :decimal(9, 6)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :bigint
+#
+# Indexes
+#
+#  index_distances_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
 require 'rails_helper'
 
 RSpec.describe Distance, type: :model do

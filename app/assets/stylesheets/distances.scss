@@ -135,6 +135,7 @@ a {
   margin-top: 12px;
   margin-bottom: 8px;
   text-decoration: none;
+  display: block;
 }
 
 .test-user-btn {
@@ -317,6 +318,10 @@ max-width: 500px;
   p {
     font-size: 0.8rem;
     margin-top: 0.6rem;
+  }
+  .intro {
+    font-size: 1rem;
+    margin-top: 0;
   }
   .content-container{
     .how-image {

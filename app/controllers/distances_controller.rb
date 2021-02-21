@@ -50,11 +50,18 @@ class DistancesController < ApplicationController
 
   def destroy
     distance = Distance.find(params[:id])
-    distance.destroy
-    redirect_to distances_path,
-      flash: {
-        notice: "データ(ID=#{distance.id})が削除されました"
-      }
+    if distance.prohibited
+      redirect_to distances_path,
+        flash: {
+          notice: "このデータは削除できません"
+        }
+    else
+      distance.destroy
+      redirect_to distances_path,
+        flash: {
+          notice: "データ(ID=#{distance.id})が削除されました"
+        }
+    end
   end
 
   def how
