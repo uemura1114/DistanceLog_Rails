@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_11_034055) do
+ActiveRecord::Schema.define(version: 2021_02_21_090332) do
 
   create_table "distance_tag_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "distance_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_01_11_034055) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.boolean "prohibited", default: false, null: false
     t.index ["user_id"], name: "index_distances_on_user_id"
   end
 
