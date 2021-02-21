@@ -1,0 +1,71 @@
+<div class="how-container">
+  <h1>アプリ使い方</h1>
+  <h2>1. START地点登録</h2>
+  <h3>1.1 ティーグラウンドにて</h3>
+  <div class="content-container">
+    <%= image_tag "1-1.png", class: "how-image" %>
+    <p>ティーグラウンドで【①START地点をSET】ボタンを押します。</p>
+  </div>
+  <div class="content-container">
+  </div>
+  <h3>1.2 START地点のマーカーがセットされる</h3>
+  <div class="content-container">
+    <%= image_tag "1-2.png", class: "how-image" %>
+    <p>MAP上の青色の現在地マークの地点に、START地点のマーカーがセットされます。誤ってセットした場合は、正しい位置で再度【①START地点をSET】ボタンを押すことで、セットされたマーカーが上書きされます。</p>
+  </div>
+  <h2>2. END地点登録</h2>
+  <h3>2.1 セカンド地点にて</h3>
+  <div class="content-container">
+    <%= image_tag "2-1.png", class: "how-image" %>
+    <p>セカンド地点まで移動し、【②END地点をSET】ボタンを押します。</p>
+  </div>
+  <h3>2.2 END地点のマーカーがセットされる</h3>
+  <div class="content-container">
+    <%= image_tag "2-2.png", class: "how-image" %>
+    <p>MAP上の青色の現在地マークの地点に、END地点のマーカーがセットされます。誤ってセットした場合は、正しい位置で再度【②END地点をSET】ボタンを押すことで、セットされたマーカーが上書きされます。</p>
+  </div>
+  <h2>3. 飛距離登録</h2>
+  <h3>3.1 登録ボタンを押す</h3>
+  <div class="content-container">
+    <%= image_tag "3-1.png", class: "how-image" %>
+    <p>START地点とEND地点の2地点がそろっていることを確認し、【③登録】ボタンを押します。このとき、ショットの感触を選んでおくと、飛距離と一緒に感触が登録されます。</p>
+  </div>
+  <h3>3.2 登録結果が表示される</h3>
+  <div class="content-container">
+    <%= image_tag "3-2.png", class: "how-image" %>
+    <p>正常に登録が完了すると、計算された飛距離が表示されます。この結果はあなたのデータとして登録され、飛距離一覧ページから確認できます。</p>
+  </div>
+  <h2>4. 補助機能について</h2>
+  <h3>4.1 【GPS↔MAP中心】ボタン</h3>
+  <div class="content-container">
+    <p>
+      【①START地点をSET】と【②END地点をSET】ボタンを押したときにセットされる地点を切り替えることができます。<br><br>
+      GPSモード：GPS情報による現在地を示す青色のマーカーの位置で地点がセットされます。<br><br>
+      MAP中心モード：MAP中心の赤色の「＋」印の位置で地点がセットされます。<br><br>
+      モードの判別方法：MAP中心に赤色の「＋」印がある場合は「MAP中心モード」、赤色の「＋」印がない場合はGPSモードです。
+    </p>
+  </div>
+  <h4>4.1.1 GPSモード</h4>
+  <div class="content-container">
+    <%= image_tag "4-1-1.png", class: "how-image" %>
+    <p>MAP中心に赤色「＋」印がないので、GPSモードです。青色の現在地マークの位置で地点がセットされます。</p>
+  </div>
+  <h4>4.1.2 MAP中心モード</h4>
+  <div class="content-container">
+    <%= image_tag "4-1-2.png", class: "how-image" %>
+    <p>MAP中心に赤色「＋」印があるので、MAP中心モードです。GPSの誤差で現在地を正しく表示できていない場合に、手動で赤色「＋」印を正しい現在地（ティーグラウンド等）に合わせて地点をセットできます。</p>
+  </div>
+  <h3>4.2 【2地点確認】ボタン</h3>
+  <h4>4.2.1 使用タイミング</h4>
+  <div class="content-container">
+    <%= image_tag "4-2-1.png", class: "how-image" %>
+    <p>このように、MAPの表示領域に2つの地点が入りきっておらず、2つの地点の両方を表示させて確認したいときに使用します。</p>
+  </div>
+  <h4>4.2.2 表示の変化</h4>
+  <div class="content-container">
+    <%= image_tag "4-2-2.png", class: "how-image" %>
+    <p>【2地点確認】のボタンを押すと、2つの地点がMAPの表示領域に入りきるようにMAPの表示領域が調整されます。</p>
+  </div>
+  <h3>4.3 【地点クリア】ボタン</h3>
+  <p>セットされている地点を削除します。地点がひとつだけであればその地点を削除します。2地点セットされていれば、両方の地点を削除します。</p>
+</div>

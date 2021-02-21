@@ -57,6 +57,9 @@ class DistancesController < ApplicationController
       }
   end
 
+  def how
+  end
+
   private
 
   def distance_params
