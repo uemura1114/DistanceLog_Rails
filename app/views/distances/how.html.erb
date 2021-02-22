@@ -4,8 +4,10 @@
     ゴルフのラウンド中に、スマホの位置情報（GPS情報）からティーショットの位置とセカンドショットの位置を登録し、その2つの地点間の距離を計測できるアプリです！<br>
     計測した距離は自分の飛距離データとして記録されます。<br>
   </p>
-  <%= link_to 'ユーザー登録はこちら', new_user_path, class: 'btn btn-success btn-user' %>
-  <%= link_to 'ログインはこちら', root_path, class: 'btn btn-success btn-user' %>
+  <% unless @current_user %>
+    <%= link_to 'ユーザー登録はこちら', new_user_path, class: 'btn btn-success btn-user' %>
+    <%= link_to 'ログインはこちら', root_path, class: 'btn btn-success btn-user' %>
+  <% end %>
 
   <h1>アプリ使い方</h1>
   <h2>1. START地点登録</h2>
