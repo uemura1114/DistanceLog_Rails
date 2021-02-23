@@ -27,7 +27,7 @@ class DistancesController < ApplicationController
   end
 
   def create
-    distance = Distance.create(distance_params_add_user_id)
+    distance = Distance.new(distance_params_add_user_id)
     if distance.save
       flash[:notice] = "ただいまの飛距離 #{distance.distance.floor(1)} yard が登録されました。"
       redirect_to new_distance_path
