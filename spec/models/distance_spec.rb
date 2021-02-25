@@ -64,69 +64,137 @@ RSpec.describe Distance, type: :model do
       end
     end
 
-    context 'latitudeが無効範囲またはnilの場合' do
-      it 'st_latの値がなければバリデーションを通過しないこと' do
+    context 'st_latの値がnilの場合' do
+      before do
         @distance.st_lat = nil
+      end
+      it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
       end
-
-      it 'st_latの値が−100の場合、バリデーションを通過しないこと' do
+    end
+      
+    context 'st_latの値が−100の場合' do
+      before do
         @distance.st_lat = -100
-        expect(@distance.valid?).to eq(false)
       end
-
-      it 'st_latの値が100の場合、バリデーションを通過しないこと' do
-        @distance.st_lat = 100
-        expect(@distance.valid?).to eq(false)
-      end
-
-      it 'ed_latの値がなければバリデーションを通過しないこと' do
-        @distance.ed_lat = nil
-        expect(@distance.valid?).to eq(false)
-      end
-
-      it 'ed_latの値が-100の場合、バリデーションを通過しないこと' do
-        @distance.ed_lat = -100
-        expect(@distance.valid?).to eq(false)
-      end
-
-      it 'ed_latの値が100の場合、バリデーションを通過しないこと' do
-        @distance.ed_lat = 100
+      it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
       end
     end
 
+    context 'st_latの値が100の場合' do
+      before do
+        @distance.st_lat = 100
+      end
+      it 'バリデーションを通過しない' do
+        expect(@distance.valid?).to eq(false)
+      end
+    end
 
-    context 'longitudeが無効範囲またはnilの場合' do
-      it 'st_lngの値がなければバリデーションを通過しないこと' do
+    context 'ed_latの値がnilの場合' do
+      before do
+        @distance.ed_lat = nil
+      end
+      it 'バリデーションを通過しない' do
+        expect(@distance.valid?).to eq(false)
+      end
+    end
+
+    context 'ed_latの値が-100の場合' do
+      before do
+        @distance.ed_lat = -100
+      end
+      it 'バリデーションを通過しない' do
+        expect(@distance.valid?).to eq(false)
+      end
+    end
+    
+    context 'ed_latの値が100の場合' do
+      before do
+        @distance.ed_lat = 100
+      end
+      it 'バリデーションを通過しない' do
+        expect(@distance.valid?).to eq(false)
+      end
+    end
+    
+    context 'st_lngの値がnilの場合' do
+      before do
         @distance.st_lng = nil
+      end
+      it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
       end
-
-      it 'st_lngの値が−100の場合、バリデーションを通過しないこと' do
-        @distance.st_lng = -200
-        expect(@distance.valid?).to eq(false)
-      end
-
-      it 'st_lngの値が100の場合、バリデーションを通過しないこと' do
+    end
+    
+    context 'st_lngの値が200の場合' do
+      before do
         @distance.st_lng = 200
+      end
+      it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
       end
-
-      it 'ed_lngの値がなければバリデーションを通過しないこと' do
+    end
+    
+    context 'st_lngの値が-200の場合' do
+      before do
+        @distance.st_lng = -200
+      end
+      it 'バリデーションを通過しない' do
+        expect(@distance.valid?).to eq(false)
+      end
+    end
+    
+    context 'ed_lngの値がnilの場合' do
+      before do
         @distance.ed_lng = nil
+      end
+      it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
       end
-
-      it 'ed_lngの値が-100の場合、バリデーションを通過しないこと' do
-        @distance.ed_lng = -200
-        expect(@distance.valid?).to eq(false)
-      end
-
-      it 'ed_lngの値が100の場合、バリデーションを通過しないこと' do
+    end
+    
+    context 'ed_lngの値が200の場合' do
+      before do
         @distance.ed_lng = 200
+      end
+      it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
       end
+    end
+    
+    context 'ed_lngの値が-200の場合' do
+      before do
+        @distance.ed_lng = -200
+      end
+      it 'バリデーションを通過しない' do
+        expect(@distance.valid?).to eq(false)
+      end
+    end
+
+  end
+
+  describe 'Association' do
+    let(:association) { described_class.reflect_on_association(target) }
+    
+    context 'distance_tag_relations' do
+      let(:target) { :distance_tag_relations }
+      it { expect(association.macro).to eq :has_many }
+      it { expect(association.options).to eq :dependent => :delete_all }
+      it { expect(association.class_name).to eq 'DistanceTagRelation'}
+    end
+    
+    context 'tags' do
+      let(:target) { :tags }
+      it { expect(association.macro).to eq :has_many }
+      it { expect(association.options).to eq :through => :distance_tag_relations }
+      it { expect(association.class_name).to eq 'Tag'}
+    end
+    
+    context 'user' do
+      let(:target) { :user }
+      it { expect(association.macro).to eq :belongs_to }
+      it { expect(association.class_name).to eq 'User'}
     end
 
   end
