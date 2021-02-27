@@ -64,6 +64,10 @@ RSpec.describe Distance, type: :model do
       it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
       end
+      it '正しいエラーメッセージが出力されること' do
+        @distance.valid?
+        expect(@distance.errors.messages[:st_lat]).to include('を入力してください')
+      end
     end
       
     context 'st_latの値が−100の場合' do
@@ -72,6 +76,10 @@ RSpec.describe Distance, type: :model do
       end
       it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
+      end
+      it '正しいエラーメッセージが出力されること' do
+        @distance.valid?
+        expect(@distance.errors.messages[:st_lat]).to include('が−90°〜90°の範囲外です')
       end
     end
 
@@ -82,6 +90,10 @@ RSpec.describe Distance, type: :model do
       it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
       end
+      it '正しいエラーメッセージが出力されること' do
+        @distance.valid?
+        expect(@distance.errors.messages[:st_lat]).to include('が−90°〜90°の範囲外です')
+      end
     end
 
     context 'ed_latの値がnilの場合' do
@@ -90,6 +102,10 @@ RSpec.describe Distance, type: :model do
       end
       it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
+      end
+      it '正しいエラーメッセージが出力されること' do
+        @distance.valid?
+        expect(@distance.errors.messages[:ed_lat]).to include('を入力してください')
       end
     end
 
@@ -100,6 +116,10 @@ RSpec.describe Distance, type: :model do
       it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
       end
+      it '正しいエラーメッセージが出力されること' do
+        @distance.valid?
+        expect(@distance.errors.messages[:ed_lat]).to include('が−90°〜90°の範囲外です')
+      end
     end
     
     context 'ed_latの値が100の場合' do
@@ -108,6 +128,10 @@ RSpec.describe Distance, type: :model do
       end
       it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
+      end
+      it '正しいエラーメッセージが出力されること' do
+        @distance.valid?
+        expect(@distance.errors.messages[:ed_lat]).to include('が−90°〜90°の範囲外です')
       end
     end
     
@@ -118,6 +142,10 @@ RSpec.describe Distance, type: :model do
       it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
       end
+      it '正しいエラーメッセージが出力されること' do
+        @distance.valid?
+        expect(@distance.errors.messages[:st_lng]).to include('を入力してください')
+      end
     end
     
     context 'st_lngの値が200の場合' do
@@ -126,6 +154,10 @@ RSpec.describe Distance, type: :model do
       end
       it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
+      end
+      it '正しいエラーメッセージが出力されること' do
+        @distance.valid?
+        expect(@distance.errors.messages[:st_lng]).to include('が−180°〜180°の範囲外です')
       end
     end
     
@@ -136,6 +168,10 @@ RSpec.describe Distance, type: :model do
       it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
       end
+      it '正しいエラーメッセージが出力されること' do
+        @distance.valid?
+        expect(@distance.errors.messages[:st_lng]).to include('が−180°〜180°の範囲外です')
+      end
     end
     
     context 'ed_lngの値がnilの場合' do
@@ -144,6 +180,10 @@ RSpec.describe Distance, type: :model do
       end
       it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
+      end
+      it '正しいエラーメッセージが出力されること' do
+        @distance.valid?
+        expect(@distance.errors.messages[:ed_lng]).to include('を入力してください')
       end
     end
     
@@ -154,6 +194,10 @@ RSpec.describe Distance, type: :model do
       it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
       end
+      it '正しいエラーメッセージが出力されること' do
+        @distance.valid?
+        expect(@distance.errors.messages[:ed_lng]).to include('が−180°〜180°の範囲外です')
+      end
     end
     
     context 'ed_lngの値が-200の場合' do
@@ -162,6 +206,10 @@ RSpec.describe Distance, type: :model do
       end
       it 'バリデーションを通過しない' do
         expect(@distance.valid?).to eq(false)
+      end
+      it '正しいエラーメッセージが出力されること' do
+        @distance.valid?
+        expect(@distance.errors.messages[:ed_lng]).to include('が−180°〜180°の範囲外です')
       end
     end
 
