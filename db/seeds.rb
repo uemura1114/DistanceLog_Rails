@@ -71,3 +71,9 @@ if Rails.env == 'production'
 
 end
 
+if Rails.env == 'test'
+  (1..5).each do |i|
+    User.create(name: "user#{i}", password: "1111", password_confirmation: "1111")
+  end
+end
+

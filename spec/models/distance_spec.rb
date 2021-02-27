@@ -47,14 +47,7 @@ RSpec.describe Distance, type: :model do
         ed_lat: 35.689725,
         ed_lng: 139.693444,
         distance: 174.27151441025242,
-        user_id: 1
-      )
-
-      @invalid_distance = Distance.new(
-        st_lat: -139.691706,
-        st_lng: -200.000000,
-        ed_lat: 139.693444,
-        ed_lng: 200.000000
+        user_id: 2
       )
     end
 
