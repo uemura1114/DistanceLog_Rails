@@ -62,7 +62,7 @@ RSpec.describe UsersController, type: :request do
       end
 
       let(:headers) do
-        { 'HTTP_REFERER' => 'http://localhost' }
+        { 'HTTP_REFERER' => 'http://localhost/users/new' }
       end
 
       before do
@@ -70,7 +70,7 @@ RSpec.describe UsersController, type: :request do
       end
 
       it 'リファラーにリダイレクトされること' do
-        expect(response).to redirect_to('http://localhost')
+        expect(response).to redirect_to('http://localhost/users/new')
       end
 
       it 'ユーザー名のエラーメッセージが含まれていること' do
