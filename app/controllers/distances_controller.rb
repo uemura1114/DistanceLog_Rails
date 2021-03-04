@@ -27,22 +27,31 @@ class DistancesController < ApplicationController
   end
 
   def create
-    distance = Distance.new(distance_params_add_user_id)
-    if distance.save
-      flash[:notice] = "ただいまの飛距離 #{distance.distance.floor(1)} yard が登録されました。"
-      redirect_to new_distance_path
+    if @current_user
+      distance = Distance.new(distance_params_add_user_id)
+      if distance.save
+        flash[:notice] = "ただいまの飛距離 #{distance.distance.floor(1)} yard が登録されました。"
+        redirect_to new_distance_path
+      else
+        redirect_to new_distance_path,
+        flash: {
+          distance: distance,
+          error_messages:  ["START地点とEND地点の2地点がそろっていません"]
+        }
+      end
     else
-      redirect_to new_distance_path,
-      flash: {
-        distance: distance,
-        error_messages:  ["START地点とEND地点の2地点がそろっていません"]
-      }
+      redirect_to root_path
     end
+
   end
 
   def show
-    @distance = Distance.find(params[:id])
-    @new_distance = Distance.where(user_id: @current_user.id).last
+    if Distance.find(params[:id]).user_id == @current_user.id
+      @distance = Distance.find(params[:id])
+      @new_distance = Distance.where(user_id: @current_user.id).last
+    else
+      redirect_to distances_path
+    end
   end
 
   def destroy
