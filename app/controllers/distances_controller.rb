@@ -1,10 +1,5 @@
 class DistancesController < ApplicationController
   def index
-    # if flash[:distance]
-    #   @distance = Distance.new(flash[:distance])
-    # else
-    #   @distance = Distance.new
-    # end
     if @current_user
       @distances = Distance.where(user_id: @current_user.id).order(:id).reverse_order.page(params[:page])
       @new_distance = Distance.where(user_id: @current_user.id).last
@@ -46,9 +41,13 @@ class DistancesController < ApplicationController
   end
 
   def show
-    if Distance.find(params[:id]).user_id == @current_user.id
-      @distance = Distance.find(params[:id])
-      @new_distance = Distance.where(user_id: @current_user.id).last
+    if Distance.exists?(id: params[:id])
+      if Distance.find(params[:id]).user_id == @current_user.id
+        @distance = Distance.find(params[:id])
+        @new_distance = Distance.where(user_id: @current_user.id).last
+      else
+        redirect_to distances_path
+      end
     else
       redirect_to distances_path
     end
