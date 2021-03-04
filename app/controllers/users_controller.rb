@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def me
     if @current_user
-      @distances = @distances = Distance.where(user_id: @current_user.id)
+      @distances = Distance.where(user_id: @current_user.id)
     else
       redirect_to root_path
     end

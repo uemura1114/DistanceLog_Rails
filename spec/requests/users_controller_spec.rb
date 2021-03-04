@@ -1,43 +1,36 @@
 require 'rails_helper'
 
-RSpec.describe UsersController, type: :controller do
-  describe 'GET #new' do
+RSpec.describe UsersController, type: :request do
+  describe "GET /users/new" do
     context 'ログインしていない状態でアクセスした場合' do
-      before do
-        get :new
+      before { get '/users/new' }
+
+      it 'リクエストが成功すること' do
+        expect(response.status).to eq 200
       end
-  
-      it 'レスポンスコードが200であること' do
-        expect(response).to have_http_status(200)
-      end
-  
+
       it 'newテンプレートをレンダリングすること' do
         expect(response).to render_template :new
       end
-  
-      it '新しいオブジェクトがビューに渡されること' do
-        expect(assigns(:user)).to be_a_new User
-      end
+
     end
 
-    context 'ログイン状態でアクセスした場合' do
-      before do
-        session[:user_id] = 2
-        get :new
-      end
-      it 'new_distance_pathにリダイレクトすること' do
-        expect(response).to redirect_to new_distance_path
-      end
-    end
+    context 'ログイン状態(ユーザーID:2)でアクセスした場合' do
+      let(:rspec_session) { { user_id: 2 } }
+      before { get '/users/new' }
 
+      it "'/distances/new'にリダイレクトすること" do
+        expect(response).to redirect_to '/distances/new'
+      end
+
+      it 'ログインユーザーのIDが2であること' do
+        expect(RSpec.configuration.session[:user_id]).to eq 2
+      end
+
+    end
   end
 
-  describe 'POST #create' do
-    before do
-      @referer = 'http://localhost'
-      @request.env['HTTP_REFERER'] = @referer
-    end
-
+  describe "POST /users" do
     context '正しいユーザー情報がポストされたとき' do
       let(:params) do
         { user: {
@@ -49,15 +42,15 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it 'ユーザーが一人増えていること' do
-        expect{ post :create, params: params }.to change(User, :count).by(1)
+        expect{ post '/users', params: params }.to change(User, :count).by(1)
       end
 
       it 'new_distance_pathにリダイレクトすること' do
-        expect(post :create, params: params).to redirect_to new_distance_path
+        expect(post '/users', params: params).to redirect_to new_distance_path
       end
-      
-    end
 
+    end
+    
     context '誤ったユーザー情報がポストされたとき' do
       let(:params) do
         { user: {
@@ -68,12 +61,16 @@ RSpec.describe UsersController, type: :controller do
         }
       end
 
+      let(:headers) do
+        { 'HTTP_REFERER' => 'http://localhost' }
+      end
+
       before do
-        post :create, params: params
+        post '/users', params: params, headers: headers
       end
 
       it 'リファラーにリダイレクトされること' do
-        expect(response).to redirect_to(@referer)
+        expect(response).to redirect_to('http://localhost')
       end
 
       it 'ユーザー名のエラーメッセージが含まれていること' do
@@ -91,35 +88,32 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe 'GET #me' do
+  describe 'GET /mypage' do
     context 'ログインしていない状態でアクセスしたとき' do
-      before do
-        get :me
-      end
+      before { get '/mypage' }
 
-      it 'rootpathにリダイレクトされること' do
+      it 'root_pathにリダイレクトされること' do
         expect(response).to redirect_to root_path
       end
+
     end
 
-    context 'user_id=2のユーザーでログインしてアクセスしたとき' do
-      before do
-        session[:user_id] = 2
-        get :me
-      end
-
+    context 'ログイン状態(ユーザーID:2)でアクセスした場合' do
+      let(:rspec_session) { { user_id: 2 } }
+      before { get '/mypage' }
+      
       it 'レスポンスコードが200であること' do
-        expect(response).to have_http_status(200)
+        expect(response.status).to eq 200
       end
 
       it 'meテンプレートをレンダリングすること' do
         expect(response).to render_template :me
       end
 
-      it 'distancesオブジェクトがビューに渡されること' do
-        expect(assigns(:distances)).to eq Distance.where(user_id: 2)
+      it 'ログインユーザーのIDが2であること' do
+        expect(RSpec.configuration.session[:user_id]).to eq 2
       end
+
     end
   end
-
 end
