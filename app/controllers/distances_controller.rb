@@ -42,9 +42,13 @@ class DistancesController < ApplicationController
 
   def show
     if Distance.exists?(id: params[:id])
-      if Distance.find(params[:id]).user_id == @current_user.id
-        @distance = Distance.find(params[:id])
-        @new_distance = Distance.where(user_id: @current_user.id).last
+      if @current_user
+        if Distance.find(params[:id]).user_id == @current_user.id
+          @distance = Distance.find(params[:id])
+          @new_distance = Distance.where(user_id: @current_user.id).last
+        else
+          redirect_to distances_path
+        end
       else
         redirect_to distances_path
       end
