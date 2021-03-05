@@ -50,7 +50,7 @@ class DistancesController < ApplicationController
           redirect_to distances_path
         end
       else
-        redirect_to distances_path
+        redirect_to root_path
       end
     else
       redirect_to distances_path
@@ -58,18 +58,30 @@ class DistancesController < ApplicationController
   end
 
   def destroy
-    distance = Distance.find(params[:id])
-    if distance.prohibited
-      redirect_to distances_path,
-        flash: {
-          notice: "このデータは削除できません"
-        }
+    if Distance.exists?(id: params[:id])
+      distance = Distance.find(params[:id])
+      if distance.prohibited
+        redirect_to distances_path,
+          flash: {
+            notice: "このデータは削除できません"
+          }
+      else
+        if @current_user
+          if distance.user_id == @current_user.id
+            distance.destroy
+            redirect_to distances_path,
+              flash: {
+                notice: "データ(ID=#{distance.id})が削除されました"
+              }
+          else
+            redirect_to distances_path
+          end
+        else
+          redirect_to root_path
+        end
+      end
     else
-      distance.destroy
-      redirect_to distances_path,
-        flash: {
-          notice: "データ(ID=#{distance.id})が削除されました"
-        }
+      redirect_to root_path
     end
   end
 
