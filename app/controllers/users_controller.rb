@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       redirect_to new_distance_path
     else
       redirect_back fallback_location: new_user_path, flash: {
-        user: user,
+        user: user_params,
         error_messages: user.errors.full_messages
       }
     end

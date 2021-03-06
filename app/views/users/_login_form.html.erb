@@ -19,12 +19,8 @@
 
 <%= form_with scope: :session, local: true, url: login_path do |f| %>
   <div class="form--group hidden-form">
-    <%= f.label :name, 'ユーザー名' %>
-    <%= f.text_field :name, class: 'form-control', value: 'testuser' %>
-  </div>
-  <div class="form-group hidden-form hidden-form">
-    <%= f.label :password, 'パスワード' %>
-    <%= f.password_field :password, class: 'form-control', value: 'sdfjh389sdhfs33' %>
+    <%= f.hidden_field :name, value: 'testuser' %>
+    <%= f.hidden_field :password, value: 'sdfjh389sdhfs33' %>
   </div>
   <div>お試し利用はこちら</div>
   <%= f.submit 'テストユーザーログイン', class: 'btn btn-success btn-user test-user-btn' %>
