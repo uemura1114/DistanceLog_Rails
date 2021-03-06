@@ -131,4 +131,144 @@ RSpec.describe DistancesController, type: :request do
 
     end
   end
+
+  describe 'GET /distances/:id' do
+    before { get "/distances/#{ id }" }
+
+    context 'ログイン状態(ユーザーID:2)でそのユーザーの最新のdistanceデータにアクセスしたとき' do
+      let(:rspec_session) { { user_id: 2} }
+      let(:id) do
+         Distance.where(user_id: RSpec.configuration.session[:user_id]).last.id
+      end
+      
+      it 'リクエストが成功すること' do
+        expect(response.status).to eq 200
+      end
+
+      it 'ユーザーID:2の最新データとNEWのラベルが表示されていること' do
+        expect(response.body).to include "#{ Distance.where(id: id).first.distance.floor(1) } yd", 'NEW'
+      end
+    end
+
+    context 'ログイン状態(ユーザーID:2)で別のユーザー(ユーザーID:3)の最新のdistanceデータにアクセスしたとき' do
+      let(:rspec_session) { { user_id: 2} }
+      let(:id) do
+         Distance.where(user_id: 3).last.id
+      end
+      
+      it 'distances_pathにリダイレクトされること' do
+        expect(response).to redirect_to distances_path
+      end
+
+    end
+
+    context 'ログイン状態(ユーザーID:2)で存在しないdistanceデータにアクセスしたとき' do
+      let(:id) do
+         9999
+      end
+      
+      it 'distances_pathにリダイレクトされること' do
+        expect(response).to redirect_to distances_path
+      end
+
+    end
+
+    context 'ログインしていない状態で存在する最新のdistanceデータにアクセスしたとき' do
+      let(:id) do
+         Distance.last.id
+      end
+      
+      it 'distances_pathにリダイレクトされること' do
+        expect(response).to redirect_to root_path
+      end
+
+    end
+
+    
+  end
+
+  describe 'DELETE /distances/:id' do
+    context 'ログイン状態(ユーザーID:2)でそのユーザーの最新distanceデータを削除したとき' do
+      let(:rspec_session) { { user_id: 2 } }
+      let(:id) do
+        Distance.where(user_id: RSpec.configuration.session[:user_id]).last.id
+      end
+
+      it '飛距離データがひとつ減っていること' do
+        expect{ delete "/distances/#{ id }" }.to change(Distance, :count).by(-1)
+      end
+
+      it 'distances_pathにリダイレクトされること' do
+        expect(delete "/distances/#{ id }").to redirect_to distances_path
+      end
+
+      it 'flashにメッセージが格納されていること' do
+        delete "/distances/#{ id }"
+        expect(flash[:notice]).to include "データが削除されました"
+      end
+    end
+
+    context 'ログイン状態(ユーザーID:2)で、別のユーザー(ユーザーID:3)の最新disntanceデータを削除しようとしたとき' do
+      let(:rspec_session) { { user_id: 2 } }
+      let(:id) do
+        Distance.where(user_id: 3).last.id
+      end
+
+      it 'distances_pathにリダイレクトされること' do
+        expect(delete "/distances/#{ id }").to redirect_to distances_path
+      end
+
+    end
+    
+    context 'ログイン状態で、存在しないdistanceデータを削除しようとしたとき' do
+      let(:id) do
+        9999
+      end
+
+      it 'root_pathにリダイレクトされること' do
+        expect(delete "/distances/#{ id }").to redirect_to root_path
+      end
+      
+    end
+
+    context 'ログインしていない状態で、存在する最新のdistanceデータを削除しようとしたとき' do
+      let(:id) do
+        Distance.last.id
+      end
+      
+      it 'root_pathにリダイレクトされること' do
+        expect(delete "/distances/#{ id }").to redirect_to root_path
+      end
+    end
+
+  end
+
+  describe 'GET /how' do
+    before { get "/how" }
+
+    context 'ログイン状態(ユーザーID:2)でアクセスしたとき' do
+      let(:rspec_session) { { user_id: 2 } }
+      
+      it 'リクエストが成功すること' do
+        expect(response.status).to eq 200
+      end
+
+      it 'howテンプレートをレンダリングすること' do
+        expect(response).to render_template :how
+      end
+
+    end
+
+    context 'ログインしていない状態でアクセスしたとき' do
+      
+      it 'リクエストが成功すること' do
+        expect(response.status).to eq 200
+      end
+    
+      it 'howテンプレートをレンダリングすること' do
+        expect(response).to render_template :how
+      end
+      
+    end
+  end
 end
