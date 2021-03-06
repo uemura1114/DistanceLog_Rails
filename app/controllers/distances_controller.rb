@@ -71,7 +71,7 @@ class DistancesController < ApplicationController
             distance.destroy
             redirect_to distances_path,
               flash: {
-                notice: "データ(ID=#{distance.id})が削除されました"
+                notice: "データが削除されました"
               }
           else
             redirect_to distances_path
