@@ -27,7 +27,29 @@ https://log-golf.net
 ひとつのデータの詳細画面です。登録した地点がGoogleMap上にマッピングされます。  
 <br />
 <img width="250" alt="5-2" src="https://user-images.githubusercontent.com/62164056/110236828-5e04a600-7f7b-11eb-8e39-993455593ecf.png">
+<br />
+<br />
+<br />
+## 使用言語・ツール等
+- Ruby 2.5.3
+- Ruby on Rails 5.2.2
+- MySQL 5.7
+- Nginx
+- AWS
+    - VPC
+    - EC2
+    - RDS
+    - Route53
+    - ALB
+- Docker / Docker-compose
+- RSpec
+- Google Maps API
+- JavaScript
+- Git / Github
+<br />
 
-![infra-3](https://user-images.githubusercontent.com/62164056/110209171-4d4a2680-7ece-11eb-938a-71a89afe9ffb.png)
+## AWS構成図
+
+![infra-4](https://user-images.githubusercontent.com/62164056/110240924-77185180-7f91-11eb-9e35-a8d9704cb12d.png)
 
 
